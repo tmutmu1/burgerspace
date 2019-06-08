@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=BurgerSpace
+Categories=Game;ArcadeGame;
+Comment=A hamburger-smashing video game
+Comment[fr]=Un jeu de hamburgers qu'on écrase
+Exec=burgerspace
+Icon=burgerspace
+Terminal=false
+Type=Application

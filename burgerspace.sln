@@ -1,0 +1,46 @@
+
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "burgerspace", "burgerspace.vcproj", "{D0399EC9-C5E8-43CC-8797-49B1B9DD81A3}"
+        ProjectSection(ProjectDependencies) = postProject
+                {B9BD6C0C-8D71-4526-BD99-9D4169E19214} = {B9BD6C0C-8D71-4526-BD99-9D4169E19214}
+                {19DF0B1C-8F95-4E0A-A585-98792E2C8C27} = {19DF0B1C-8F95-4E0A-A585-98792E2C8C27}
+        EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "flatzebra", "..\flatzebra-0.1.5\flatzebra.vcproj", "{19DF0B1C-8F95-4E0A-A585-98792E2C8C27}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "burgerspace-core", "burgerspace-core.vcproj", "{B9BD6C0C-8D71-4526-BD99-9D4169E19214}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "burgerspace-server", "burgerspace-server.vcproj", "{3474C1BD-B984-4F54-BB1D-AC52AC95A7D8}"
+        ProjectSection(ProjectDependencies) = postProject
+                {B9BD6C0C-8D71-4526-BD99-9D4169E19214} = {B9BD6C0C-8D71-4526-BD99-9D4169E19214}
+                {19DF0B1C-8F95-4E0A-A585-98792E2C8C27} = {19DF0B1C-8F95-4E0A-A585-98792E2C8C27}
+        EndProjectSection
+EndProject
+Global
+        GlobalSection(SolutionConfigurationPlatforms) = preSolution
+                Debug|Win32 = Debug|Win32
+                Release|Win32 = Release|Win32
+        EndGlobalSection
+        GlobalSection(ProjectConfigurationPlatforms) = postSolution
+                {D0399EC9-C5E8-43CC-8797-49B1B9DD81A3}.Debug|Win32.ActiveCfg = Debug|Win32
+                {D0399EC9-C5E8-43CC-8797-49B1B9DD81A3}.Debug|Win32.Build.0 = Debug|Win32
+                {D0399EC9-C5E8-43CC-8797-49B1B9DD81A3}.Release|Win32.ActiveCfg = Release|Win32
+                {D0399EC9-C5E8-43CC-8797-49B1B9DD81A3}.Release|Win32.Build.0 = Release|Win32
+                {19DF0B1C-8F95-4E0A-A585-98792E2C8C27}.Debug|Win32.ActiveCfg = Debug|Win32
+                {19DF0B1C-8F95-4E0A-A585-98792E2C8C27}.Debug|Win32.Build.0 = Debug|Win32
+                {19DF0B1C-8F95-4E0A-A585-98792E2C8C27}.Release|Win32.ActiveCfg = Release|Win32
+                {19DF0B1C-8F95-4E0A-A585-98792E2C8C27}.Release|Win32.Build.0 = Release|Win32
+                {B9BD6C0C-8D71-4526-BD99-9D4169E19214}.Debug|Win32.ActiveCfg = Debug|Win32
+                {B9BD6C0C-8D71-4526-BD99-9D4169E19214}.Debug|Win32.Build.0 = Debug|Win32
+                {B9BD6C0C-8D71-4526-BD99-9D4169E19214}.Release|Win32.ActiveCfg = Release|Win32
+                {B9BD6C0C-8D71-4526-BD99-9D4169E19214}.Release|Win32.Build.0 = Release|Win32
+                {3474C1BD-B984-4F54-BB1D-AC52AC95A7D8}.Debug|Win32.ActiveCfg = Debug|Win32
+                {3474C1BD-B984-4F54-BB1D-AC52AC95A7D8}.Debug|Win32.Build.0 = Debug|Win32
+                {3474C1BD-B984-4F54-BB1D-AC52AC95A7D8}.Release|Win32.ActiveCfg = Release|Win32
+                {3474C1BD-B984-4F54-BB1D-AC52AC95A7D8}.Release|Win32.Build.0 = Release|Win32
+        EndGlobalSection
+        GlobalSection(SolutionProperties) = preSolution
+                HideSolutionNode = FALSE
+        EndGlobalSection
+EndGlobal
