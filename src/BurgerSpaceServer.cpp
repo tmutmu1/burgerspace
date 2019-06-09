@@ -898,21 +898,22 @@ BurgerSpaceServer::initializeSprites() throw(PixmapLoadError)
     {
         const IngInit &ii = tableIngredients[j];
         int yTarget = theCurrentLevel.positionInPixels.y +
-                                ii.yTargetTile * TILE_SIDE - size.y * ii.rank;
+                                ii.yTargetTile * TILE_SIDE - (size.y/2) * ii.rank-2;
+                                
         PixmapArray *pm = NULL;
         switch (ii.type)
         {
-            case IngInit::BOTTOM_BUN:   pm = &bottomBunPA;   break;
+            case IngInit::BOTTOM_BUN:   pm = &bottomBunPA;   yTarget-=8; break;
             case IngInit::MEAT:         pm = &meatPA;        break;
             case IngInit::LETTUCE:      pm = &lettucePA;     break;
             case IngInit::RED_STUFF:    pm = &redStuffPA;    break;
             case IngInit::YELLOW_STUFF: pm = &yellowStuffPA; break;
-            case IngInit::TOP_BUN:  pm = &topBunPA; numHamburgersToDo++; break;
+            case IngInit::TOP_BUN:  pm = &topBunPA; numHamburgersToDo++;  break;
             default:                   assert(false);
         }
 
         IngredientGroup *ig =
-                    new IngredientGroup(yTarget, ii.type == IngInit::TOP_BUN);
+                    new IngredientGroup(yTarget, ii.type == IngInit::TOP_BUN, ii.type == IngInit::BOTTOM_BUN);
         for (size_t i = 0; i < 4; i++)
         {
             Couple pos = theCurrentLevel.positionInPixels +
@@ -2401,6 +2402,10 @@ BurgerSpaceServer::detectCollisions()
             aGroup->stop();
             releaseCarriedEnemies(*aGroup);
             addToScore(50);
+            if (aGroup->getNumFloorsToGo()==0 && !aGroup->isTopBun() && aGroup->isBottomBun())
+            	printf("i think this is not the top bun.. is it the bottom bun?\n");
+            printf("verticalTarget %d yTarget %d pos.y %d\n",aGroup->getVerticalTarget(),yTarget,pos.y);
+            if (aGroup->isTopBun())  printf("BURGER DONE, %d left\n",numHamburgersToDo-1);
             if (aGroup->isTopBun() && --numHamburgersToDo == 0)
                 makePlayerWin();
 

@@ -28,7 +28,7 @@
 using namespace flatzebra;
 
 
-IngredientGroup::IngredientGroup(int yTarget, bool topBun)
+IngredientGroup::IngredientGroup(int yTarget, bool topBun, bool bottomBun)
   : members(),
     verticalTarget(yTarget),
     carriedEnemies(),
@@ -36,7 +36,8 @@ IngredientGroup::IngredientGroup(int yTarget, bool topBun)
     stallTime(0),
     state(NORMAL),
     numFloorsToGo(0),
-    topBunFlag(topBun)
+    topBunFlag(topBun),
+    bottomBunFlag(bottomBun)
 {
     members[0] = members[1] = members[2] = members[3] = NULL;
 }

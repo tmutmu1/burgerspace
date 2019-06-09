@@ -189,7 +189,7 @@ LocalServer::loadGame(std::istream &in)
             enemyIndexes.push_back(index);
         }
 
-        IngredientGroup *group = new IngredientGroup(verticalTarget, isTopBun);
+        IngredientGroup *group = new IngredientGroup(verticalTarget, isTopBun, false);
         group->restore(bounceTime, stallTime,
                         IngredientGroup::State(state), numFloorsToGo);
 

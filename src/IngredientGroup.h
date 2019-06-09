@@ -47,7 +47,7 @@ public:
 
     enum State { NORMAL, FALL1, BOUNCE, STALL, FALL2, REST };
 
-    IngredientGroup(int yTarget, bool topBun);
+    IngredientGroup(int yTarget, bool topBun, bool bottomBun);
     /*  Constructs an empty group that has the given vertical target.
         The vertical target is the position where the group's member
         sprites must stop falling.
@@ -143,6 +143,7 @@ public:
     flatzebra::Couple getCenterPos() const;
 
     bool isTopBun() const { return topBunFlag; }
+    bool isBottomBun() const { return bottomBunFlag; }
     /*  Indicates if this group represents a top bun.
         When a top bun reaches the plate, the corresponding hamburger
         is done.  When all hamburgers are done, the level is done.
@@ -167,6 +168,7 @@ private:
     State state;
     size_t numFloorsToGo;
     bool topBunFlag;
+    bool bottomBunFlag;
 
     // Forbidden operations:
     IngredientGroup(const IngredientGroup &);
