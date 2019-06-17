@@ -786,6 +786,8 @@ BurgerSpaceServer::BurgerSpaceServer(int initLevelNumber,
 
     numLives(0),
     numAvailablePeppers(0),
+    cooldowntime(0),
+    cooldown(0),
 
     theCurrentLevel()
 {
@@ -888,6 +890,7 @@ BurgerSpaceServer::initializeSprites() throw(PixmapLoadError)
     ingredientGroups.clear();
 
     const Couple size = bottomBunPA.getImageSize();
+    printf("size.x %d size.y %d", size.x, size.y);
     const IngInit *tableIngredients =
                 tableOfTablesOfIngredientsLevel[theCurrentLevel.getLevelNo()];
     assert(tableIngredients != NULL);
@@ -899,7 +902,7 @@ BurgerSpaceServer::initializeSprites() throw(PixmapLoadError)
         const IngInit &ii = tableIngredients[j];
         int yTarget = theCurrentLevel.positionInPixels.y +
                                 ii.yTargetTile * TILE_SIDE - (size.y/2) * ii.rank-2;
-                                
+
         PixmapArray *pm = NULL;
         switch (ii.type)
         {
@@ -958,6 +961,8 @@ BurgerSpaceServer::initGameParameters()
     theScore = 0;
     numAvailablePeppers = 5;
     numLives = 0;
+    cooldowntime = 120;
+    cooldown = 0;
 
     initTimeForTreat();
 }
@@ -1371,7 +1376,7 @@ BurgerSpaceServer::animatePlayer()
                 assert(numLives >= 0);
                 if (numLives == 0)
                 {
-                    deleteSprite(playerSprite);  // game over 
+                    deleteSprite(playerSprite);  // game over
                     playerSprite = NULL;
                 }
             }
@@ -1388,16 +1393,20 @@ BurgerSpaceServer::animatePlayer()
     /*  Shoot if requested:
     */
     static const bool infinitePepper = (getenv("INFINITEPEPPER") != NULL);
+    if (cooldown > 0) {
+      cooldown--;
+    }
     if (chefWantsToShootPepper)
     {
         chefWantsToShootPepper = false;
 
-        if (infinitePepper || numAvailablePeppers > 0)
+        if ((infinitePepper || numAvailablePeppers > 0) && cooldown == 0)
         {
             const Couple size = pepperPA.getImageSize();
             const Couple plsize = playerSprite->getSize();
             Couple pos = playerSprite->getPos();
             int dir;
+            cooldown = cooldowntime;
 
             if (lastPlayerDirection == -1)
                 dir = UP;

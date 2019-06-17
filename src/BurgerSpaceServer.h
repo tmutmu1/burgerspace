@@ -333,6 +333,10 @@ protected:
 
     int    numAvailablePeppers;  // number of pepper shots available to player
 
+    int cooldowntime; //time of the cooldown
+
+    int cooldown; //cooldown
+
     Level theCurrentLevel;
 
 
