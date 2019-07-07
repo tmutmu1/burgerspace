@@ -337,6 +337,8 @@ protected:
 
     int cooldown; //cooldown
 
+    int maxAvailablePeppers; // maximum peppers the player can have
+
     Level theCurrentLevel;
 
 
