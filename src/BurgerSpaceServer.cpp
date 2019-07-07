@@ -788,6 +788,7 @@ BurgerSpaceServer::BurgerSpaceServer(int initLevelNumber,
     numAvailablePeppers(0),
     cooldowntime(0),
     cooldown(0),
+    maxAvailablePeppers(0),
 
     theCurrentLevel()
 {
@@ -901,12 +902,12 @@ BurgerSpaceServer::initializeSprites() throw(PixmapLoadError)
     {
         const IngInit &ii = tableIngredients[j];
         int yTarget = theCurrentLevel.positionInPixels.y +
-                                ii.yTargetTile * TILE_SIDE - (size.y/2) * ii.rank-2;
-
+                                ii.yTargetTile * TILE_SIDE - (size.y/2) * ii.rank-2 - 8 + 16 * (ii.rank-1);
+//the - 8 + 16 * (ii.rank-1) is the position adjustment for the scaled ingredient sprites
         PixmapArray *pm = NULL;
         switch (ii.type)
         {
-            case IngInit::BOTTOM_BUN:   pm = &bottomBunPA;   yTarget-=8; break;
+            case IngInit::BOTTOM_BUN:   pm = &bottomBunPA;   break;
             case IngInit::MEAT:         pm = &meatPA;        break;
             case IngInit::LETTUCE:      pm = &lettucePA;     break;
             case IngInit::RED_STUFF:    pm = &redStuffPA;    break;
@@ -921,7 +922,7 @@ BurgerSpaceServer::initializeSprites() throw(PixmapLoadError)
         {
             Couple pos = theCurrentLevel.positionInPixels +
                                 Couple(ii.xInitTile * TILE_SIDE + i * size.x,
-                                        ii.yInitTile * TILE_SIDE - size.y + 6);
+                                        ii.yInitTile * TILE_SIDE - size.y + 20);
             IngredientSprite *s = new IngredientSprite(*pm, pos, ig);
             ig->setMember(i, s);
             s->currentPixmapIndex = i;
@@ -962,7 +963,8 @@ BurgerSpaceServer::initGameParameters()
     numAvailablePeppers = 5;
     numLives = 0;
     cooldowntime = 120;
-    cooldown = 0;
+    cooldown = cooldowntime;
+    maxAvailablePeppers = 5;
 
     initTimeForTreat();
 }
@@ -1371,6 +1373,8 @@ BurgerSpaceServer::animatePlayer()
             }
             else  // player has finished dying
             {
+                cooldown = cooldowntime;
+                givePlayerPepper();
                 resetPlay();  // puts player back into current level's starting pos
                 addToNumLives(-1);
                 assert(numLives >= 0);
@@ -1393,20 +1397,29 @@ BurgerSpaceServer::animatePlayer()
     /*  Shoot if requested:
     */
     static const bool infinitePepper = (getenv("INFINITEPEPPER") != NULL);
-    if (cooldown > 0) {
-      cooldown--;
+    // begin cooldown only if peppers can be added
+    if (numAvailablePeppers < maxAvailablePeppers) {
+      if (cooldown > 0) {
+        cooldown--;
+      }
+    }
+    // regenerate peppers
+    if (cooldown <= 0) {
+      givePlayerPepper();
+      cooldown = cooldowntime;
     }
     if (chefWantsToShootPepper)
     {
         chefWantsToShootPepper = false;
 
-        if ((infinitePepper || numAvailablePeppers > 0) && cooldown == 0)
+        //if ((infinitePepper || numAvailablePeppers > 0) && cooldown == 0)
+        if (infinitePepper || numAvailablePeppers > 0)
         {
             const Couple size = pepperPA.getImageSize();
             const Couple plsize = playerSprite->getSize();
             Couple pos = playerSprite->getPos();
             int dir;
-            cooldown = cooldowntime;
+            //cooldown = cooldowntime;
 
             if (lastPlayerDirection == -1)
                 dir = UP;
@@ -1919,8 +1932,8 @@ BurgerSpaceServer::isIngredientSpriteOnFloor(const IngredientSprite &s) const
 {
     Couple size = s.getSize();
     Couple pos = s.getPos();
-    Couple p(pos.x, pos.y + size.y - 6);
-            /*  The -6 represents the fact that an ingredient is supposed
+    Couple p(pos.x, pos.y + size.y - 20);
+            /*  The -20 represents the fact that an ingredient is supposed
                 to be a bit sunken in the floor.
             */
     if (p.y % TILE_SIDE != 0)
@@ -2293,7 +2306,9 @@ BurgerSpaceServer::animateTemporarySprites(SpriteList &slist) const
 void
 BurgerSpaceServer::givePlayerPepper()
 {
+  if (numAvailablePeppers < maxAvailablePeppers) {
     numAvailablePeppers++;
+  }
 }
 
 
@@ -2411,9 +2426,6 @@ BurgerSpaceServer::detectCollisions()
             aGroup->stop();
             releaseCarriedEnemies(*aGroup);
             addToScore(50);
-            if (aGroup->getNumFloorsToGo()==0 && !aGroup->isTopBun() && aGroup->isBottomBun())
-            	printf("i think this is not the top bun.. is it the bottom bun?\n");
-            printf("verticalTarget %d yTarget %d pos.y %d\n",aGroup->getVerticalTarget(),yTarget,pos.y);
             if (aGroup->isTopBun())  printf("BURGER DONE, %d left\n",numHamburgersToDo-1);
             if (aGroup->isTopBun() && --numHamburgersToDo == 0)
                 makePlayerWin();
