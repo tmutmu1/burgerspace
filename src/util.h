@@ -50,7 +50,7 @@ enum
 {
     TILE_SIDE = 32,
     SCREEN_WIDTH_IN_PIXELS = 672,
-    SCREEN_HEIGHT_IN_PIXELS = 520
+    SCREEN_HEIGHT_IN_PIXELS = 800
 };
 
 
@@ -111,7 +111,7 @@ getDir(const char *defaultValue, const char *envVarName)
         dir = s;
     else
         dir = defaultValue;
-    
+
     if (!dir.empty() && dir[dir.length() - 1] != '/')
         dir += '/';
 

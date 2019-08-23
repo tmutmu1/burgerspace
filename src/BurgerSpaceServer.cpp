@@ -58,8 +58,8 @@ static const int
     FRAMES_PER_SECOND = 20,
     FLOOR_POS = TILE_SIDE - 6,  // position of the floor's surface, in a tile
     INGREDIENT_FALL_SPEED = 8,
-    PLAYER_SPEED_FACTOR = 4,
-    ENEMY_SPEED_FACTOR = 3,
+    PLAYER_SPEED_FACTOR = 8,
+    ENEMY_SPEED_FACTOR = 6,
     SCORE_TTL = 20,
     NUM_INIT_LIVES = 3,
     NUM_LEVELS = 6,
@@ -191,12 +191,21 @@ BurgerSpaceServer::levelDescriptor1[] =
     "eeeeeeeeeeeeeeeeeeeeeee",
     "eeetffftftftffftfffteee",
     "eeeleeeleleleeeleeeleee",
+    "eeeleeeleleleeeleeeleee",
+    "eeeleeeleleleeeleeeleee",
     "eeefftfteletftftfffteee",
+    "eeeeeleleleleleleeeleee",
     "eeeeeletfffteleleeeleee",
+    "eeeeeleleeeleleleeeleee",
     "eeetftfteeeleletftffeee",
+    "eeeleleleeeleleleleeeee",
     "eeeleletffftfffteleeeee",
+    "eeeleleleeeleeeleleeeee",
     "eeeleleleeeleeetftfteee",
+    "eeeleleleeeleeeleleleee",
     "eeetffftffftfffteleleee",
+    "eeeleeeleeeleeeleleleee",
+    "eeeleeeleeeleeeleleleee",
     "eeeleeeleeeleeeleleleee",
     "eeefffffffffffffffffeee",
     "eeeeeeeeeeeeeeeeeeeeeee",
@@ -212,28 +221,28 @@ const BurgerSpaceServer::IngInit
 BurgerSpaceServer::tableIngredientsLevel1[] =
 {
     // 1st column:
-    {  4, 11, 15,  1, IngInit::BOTTOM_BUN },
-    {  4,  9, 15,  2, IngInit::MEAT       },
-    {  4,  6, 15,  3, IngInit::LETTUCE    },
-    {  4,  4, 15,  4, IngInit::TOP_BUN    },
+    {  4, 20, 24,  1, IngInit::BOTTOM_BUN },
+    {  4, 16, 24,  2, IngInit::MEAT       },
+    {  4,  10, 24,  3, IngInit::LETTUCE    },
+    {  4,  6, 24,  4, IngInit::TOP_BUN    },
 
     // 2nd column:
-    {  8, 11, 15,  1, IngInit::BOTTOM_BUN },
-    {  8,  9, 15,  2, IngInit::MEAT       },
-    {  8,  7, 15,  3, IngInit::LETTUCE    },
-    {  8,  2, 15,  4, IngInit::TOP_BUN    },
+    {  8, 20, 24,  1, IngInit::BOTTOM_BUN },
+    {  8, 16, 24,  2, IngInit::MEAT       },
+    {  8, 12, 24,  3, IngInit::LETTUCE    },
+    {  8,  2, 24,  4, IngInit::TOP_BUN    },
 
     // 3rd column:
-    { 12, 11, 15,  1, IngInit::BOTTOM_BUN },
-    { 12,  7, 15,  2, IngInit::MEAT       },
-    { 12,  4, 15,  3, IngInit::LETTUCE    },
-    { 12,  2, 15,  4, IngInit::TOP_BUN    },
+    { 12, 20, 24,  1, IngInit::BOTTOM_BUN },
+    { 12, 12, 24,  2, IngInit::MEAT       },
+    { 12,  6, 24,  3, IngInit::LETTUCE    },
+    { 12,  2, 24,  4, IngInit::TOP_BUN    },
 
     // 4th column:
-    { 16,  8, 15,  1, IngInit::BOTTOM_BUN },
-    { 16,  6, 15,  2, IngInit::MEAT       },
-    { 16,  4, 15,  3, IngInit::LETTUCE    },
-    { 16,  2, 15,  4, IngInit::TOP_BUN    },
+    { 16,  14, 24,  1, IngInit::BOTTOM_BUN },
+    { 16,  10, 24,  2, IngInit::MEAT       },
+    { 16,  6, 24,  3, IngInit::LETTUCE    },
+    { 16,  2, 24,  4, IngInit::TOP_BUN    },
 
     {  0,  0,  0,  0, IngInit::BOTTOM_BUN }  // rank zero marks the end
 };
@@ -246,17 +255,27 @@ BurgerSpaceServer::levelDescriptor2[] =
     "eeeeeeeeeeeeeeeeeeeeeee",
     "eeeeeeeeeeeeeeeeeeeeeee",
     "eeetftftftftftftftfteee",
+    "eeeleleleleleleleleleee",
     "eeetftftftfteleleleleee",
+    "eeeleleleleleleleleleee",
     "eeetftfteletftftftfteee",
+    "eeeleleleleleleleleleee",
     "eeeleletftfteletftfteee",
+    "eeeleleleleleleteleleee",
     "eeefffffftftftffffffeee",
+    "eeeeeeeeeleleleeeeeeeee",
     "eeeeeeeeeletftffeeeeeee",
+    "eeeeeeeeeleleleeeeeeeee",
     "eeeeeeefftfteleeeeeeeee",
+    "eeeeeeeeeleleleeeeeeeee",
     "eeeeeeeeeletftffeeeeeee",
+    "eeeeeeeeeleleleeeeeeeee",
     "eeeeeeefffftffffeeeeeee",
+    "eeeeeeeeeeeleeeeeeeeeee",
     "eeeepppeeeeleeeepppeeee",
+    "eeeeeeeeeeeleeeeeeeeeee",
+    "eeeeeeeeeeeleeeeeeeeeee",
     "eeeeeeeeeeefeeeeeeeeeee",
-    "eeeeeeeeeeeeeeeeeeeeeee",
     "eeeeeeeeeeeeeeeeeeeeeee",
     "eeeeeeeepppepppeeeeeeee",
     NULL  // marks the end
@@ -267,28 +286,28 @@ BurgerSpaceServer::levelDescriptor2[] =
 BurgerSpaceServer::tableIngredientsLevel2[] =
 {
     // 1st column:
-    {  4,  6, 11,  1, IngInit::BOTTOM_BUN },
-    {  4,  4, 11,  2, IngInit::MEAT       },
-    {  4,  3, 11,  3, IngInit::LETTUCE    },
-    {  4,  2, 11,  4, IngInit::TOP_BUN    },
+    {  4, 10, 20,  1, IngInit::BOTTOM_BUN },
+    {  4,  6, 20,  2, IngInit::MEAT       },
+    {  4,  4, 20,  3, IngInit::LETTUCE    },
+    {  4,  2, 20,  4, IngInit::TOP_BUN    },
 
     // 2nd column:
-    {  8, 10, 15,  1, IngInit::BOTTOM_BUN },
-    {  8,  5, 15,  2, IngInit::MEAT       },
-    {  8,  3, 15,  3, IngInit::LETTUCE    },
-    {  8,  2, 15,  4, IngInit::TOP_BUN    },
+    {  8, 18, 25,  1, IngInit::BOTTOM_BUN },
+    {  8,  8, 25,  2, IngInit::MEAT       },
+    {  8,  4, 25,  3, IngInit::LETTUCE    },
+    {  8,  2, 25,  4, IngInit::TOP_BUN    },
 
     // 3rd column:
-    { 12, 10, 15,  1, IngInit::BOTTOM_BUN },
-    { 12,  9, 15,  2, IngInit::MEAT       },
-    { 12,  7, 15,  3, IngInit::LETTUCE    },
-    { 12,  2, 15,  4, IngInit::TOP_BUN    },
+    { 12, 18, 25,  1, IngInit::BOTTOM_BUN },
+    { 12, 16, 25,  2, IngInit::MEAT       },
+    { 12, 12, 25,  3, IngInit::LETTUCE    },
+    { 12,  2, 25,  4, IngInit::TOP_BUN    },
 
     // 4th column:
-    { 16,  6, 11,  1, IngInit::BOTTOM_BUN },
-    { 16,  5, 11,  2, IngInit::MEAT       },
-    { 16,  4, 11,  3, IngInit::LETTUCE    },
-    { 16,  2, 11,  4, IngInit::TOP_BUN    },
+    { 16, 10, 20,  1, IngInit::BOTTOM_BUN },
+    { 16,  8, 20,  2, IngInit::MEAT       },
+    { 16,  6, 20,  3, IngInit::LETTUCE    },
+    { 16,  2, 20,  4, IngInit::TOP_BUN    },
 
     {  0,  0,  0,  0, IngInit::BOTTOM_BUN }  // rank zero marks the end
 };
@@ -301,16 +320,28 @@ BurgerSpaceServer::levelDescriptor3[] =
     "eeeeeeeeeeeeeeeeeeeeeee",
     "eeeeeeeeeeeeeeeeeeeeeee",
     "eeetffftftffftfffffteee",
+    "eeeleeeleleeeleeeeeleee",
     "eeetffftffftffftfffteee",
+    "eeeleeeleeeleeeleeeleee",
     "eeetffffftfteeetfffteee",
+    "eeeleeeeeleleeeleeeleee",
     "eeefffftftftftffffffeee",
+    "eeeeeeeleleleleeeeeeeee",
     "eeeeeeeteletfffteeeeeee",
+    "eeeeeeeleleleeeleeeeeee",
     "eeeeeeetfffffffteeeeeee",
+    "eeeeeeeleeeeeeeleeeeeee",
     "eeeepppleeeeeeelpppeeee",
+    "eeeeeeeleeeeeeeleeeeeee",
     "eeetftfteeeeeeetfffteee",
+    "eeeleleleeeeeeeleeeleee",
     "eeetfffteeeeeeetftfteee",
+    "eeeleeeleeeeeeeleleleee",
     "eeefffftpppeppptffffeee",
+    "eeeeeeeleeeeeeeleeeeeee",
     "eeeeeeetftftftfteeeeeee",
+    "eeeeeeeleleleleleeeeeee",
+    "eeeeeeeleleleleleeeeeee",
     "eeeeeeefffffffffeeeeeee",
     "eeeepppeeeeeeeeepppeeee",
     "eeeeeeeeeeeeeeeeeeeeeee",
@@ -322,34 +353,34 @@ BurgerSpaceServer::levelDescriptor3[] =
 BurgerSpaceServer::tableIngredientsLevel3[] =
 {
     // 1st column, upper hamburger:
-    {  4,  5,  8,  1, IngInit::BOTTOM_BUN },
-    {  4,  4,  8,  2, IngInit::MEAT       },
-    {  4,  2,  8,  3, IngInit::TOP_BUN    },
+    {  4,  8, 14,  1, IngInit::BOTTOM_BUN },
+    {  4,  6, 14,  2, IngInit::MEAT       },
+    {  4,  2, 14,  3, IngInit::TOP_BUN    },
 
     // 1st column, lower hamburger:
-    {  4, 11, 14,  1, IngInit::BOTTOM_BUN },
-    {  4, 10, 14,  2, IngInit::MEAT       },
-    {  4,  9, 14,  3, IngInit::TOP_BUN    },
+    {  4, 20, 26,  1, IngInit::BOTTOM_BUN },
+    {  4, 18, 26,  2, IngInit::MEAT       },
+    {  4, 16, 26,  3, IngInit::TOP_BUN    },
 
     // 2nd column:
-    {  8,  5, 11,  1, IngInit::BOTTOM_BUN },
-    {  8,  3, 11,  2, IngInit::MEAT       },
-    {  8,  2, 11,  3, IngInit::TOP_BUN    },
+    {  8,  8, 20,  1, IngInit::BOTTOM_BUN },
+    {  8,  4, 20,  2, IngInit::MEAT       },
+    {  8,  2, 20,  3, IngInit::TOP_BUN    },
 
     // 3rd column:
-    { 12,  5, 11,  1, IngInit::BOTTOM_BUN },
-    { 12,  3, 11,  2, IngInit::MEAT       },
-    { 12,  2, 11,  3, IngInit::TOP_BUN    },
+    { 12,  8, 20,  1, IngInit::BOTTOM_BUN },
+    { 12,  4, 20,  2, IngInit::MEAT       },
+    { 12,  2, 20,  3, IngInit::TOP_BUN    },
 
     // 4th column, upper hamburger:
-    { 16,  5,  8,  1, IngInit::BOTTOM_BUN },
-    { 16,  4,  8,  2, IngInit::MEAT       },
-    { 16,  2,  8,  3, IngInit::TOP_BUN    },
+    { 16,  8, 14,  1, IngInit::BOTTOM_BUN },
+    { 16,  6, 14,  2, IngInit::MEAT       },
+    { 16,  2, 14,  3, IngInit::TOP_BUN    },
 
     // 4th column, lower hamburger:
-    { 16, 11, 14,  1, IngInit::BOTTOM_BUN },
-    { 16, 10, 14,  2, IngInit::MEAT       },
-    { 16,  9, 14,  3, IngInit::TOP_BUN    },
+    { 16, 20, 26,  1, IngInit::BOTTOM_BUN },
+    { 16, 18, 26,  2, IngInit::MEAT       },
+    { 16, 16, 26,  3, IngInit::TOP_BUN    },
 
     {  0,  0,  0,  0, IngInit::BOTTOM_BUN }  // rank zero marks the end
 };
@@ -580,9 +611,9 @@ BurgerSpaceServer::enemyStartingHeights[] =
 */
 {
     {  0,  0,  0,  0 },  // index 0 not used
-    {  2, 11,  2, 11 },  // level 1
-    {  2,  6,  2,  6 },  // level 2
-    {  2, 11,  2, 11 },  // level 3
+    {  2, 20,  2, 20 },  // level 1
+    {  2, 10,  2, 10 },  // level 2
+    {  2, 20,  2, 20 },  // level 3
     {  2,  9,  2,  9 },  // level 4
     {  2, 13,  2, 13 },  // level 5
     {  3, 11,  2, 10 },  // level 6
@@ -597,9 +628,9 @@ const BurgerSpaceServer::IntPair
 BurgerSpaceServer::playerStartingPos[] =
 {
     { 11,  0 },  // index 0 not used
-    { 11, 11 },  // level 1
-    { 11, 12 },  // level 2
-    { 11, 13 },  // level 3
+    { 11, 16 },  // level 1
+    { 11, 23 },  // level 2
+    { 11, 25 },  // level 3
     { 11,  9 },  // level 4
     { 15, 13 },  // level 5
     { 11, 11 },  // level 6
@@ -2320,6 +2351,9 @@ BurgerSpaceServer::makePlayerWin()
     assert(playerSprite != NULL);
     playerSprite->setTimeToLive(80);
     releaseAllCarriedEnemies();
+
+    string pythonFileName = "test.py";
+    system(("python3 " + pythonFileName).c_str());
 
     celebrationMode = true;
 
