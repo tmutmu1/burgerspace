@@ -46,7 +46,7 @@ public:
         loadKS(SDLK_l),
         fullScreenKS(SDLK_F11),
         joystick(),
-        startBI(flatzebra::Joystick::START_BTN),
+        startBI(flatzebra::Joystick::B_BTN),
         pauseBI(flatzebra::Joystick::BACK_BTN),
         shootBI(flatzebra::Joystick::B_BTN)
     {
