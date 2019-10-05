@@ -61,7 +61,7 @@ static const int
     PLAYER_SPEED_FACTOR = 8,
     ENEMY_SPEED_FACTOR = 6,
     SCORE_TTL = 20,
-    NUM_INIT_LIVES = 3,
+    NUM_INIT_LIVES = 1,
     NUM_LEVELS = 6,
     CORNER_TURN_TOLERANCE = 8;
 
