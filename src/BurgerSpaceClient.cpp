@@ -195,6 +195,8 @@ BurgerSpaceClient::processActivation(bool appActive)
     {
         if (!appActive && !serverInterface->isPaused())
         {
+printf("not active\n");
+return;
             serverInterface->pauseGame();
             restoreBackground();
             (void) serverInterface->update();  // let the server execute the pause request
@@ -442,15 +444,21 @@ BurgerSpaceClient::runClientMode(Uint32 millisecondsPerFrame)
 
         if (gameMode == IN_GAME)  // if not in a dialog
         {
+
             if (numLives == 0 && controller.isStartRequested())
             {
+printf("start requested\n");
                 if (serverInterface->isPaused())  // if starting while paused
+{
+printf("resume Game\n");
                     serverInterface->resumeGame();
+}
 
                 serverInterface->startNewGame();  // overrides resume request if any
             }
             else if (!serverInterface->isPaused() && controller.isPauseRequested())
             {
+printf("!isPaused and pauseRequested\n");
                 currentPauseMessage = "PAUSED -- press P to resume";
                 serverInterface->pauseGame();
             }
