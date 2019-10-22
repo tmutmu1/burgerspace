@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/pi/burgerspace
+
+src/burgerspace --full-screen 1>&2 >> error_log &
