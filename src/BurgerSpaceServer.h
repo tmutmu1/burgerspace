@@ -366,6 +366,7 @@ protected:
     int isPositionAtSideOfStructure(flatzebra::Couple pos) const;
     void animateTemporarySprites(flatzebra::SpriteList &slist) const;
     void givePlayerPepper();
+    void dispenseBurger();
     void makePlayerWin();
     void makePlayerDie();
     void releaseAllCarriedEnemies();
