@@ -15,6 +15,15 @@ import Adafruit_PCA9685
 # Set frequency to 60hz, good for servos.
 pwm = Adafruit_PCA9685.PCA9685()
 
+
+numeric_loglevel = getattr(logging, args.log_level.upper(), None)
+if not isinstance(numeric_loglevel, int):
+    raise ValueError('Invalid log level: %s' % args.log_level)
+
+
+logging.basicConfig(format="[%(asctime)s] %(levelname)-8s %(message)s",
+                       datefmt="%m/%d %H:%M:%S", level=numeric_loglevel)
+
 def dispense_init():
     pwm.set_pwm_freq(60)
     logging.debug("Initializing servo")
