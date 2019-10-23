@@ -27,3 +27,7 @@ def main(argv, stdout, environ):
 
 
   test()
+
+if __name__ == "__main__":
+   main(sys.argv, sys.stdout, os.environ)
+
