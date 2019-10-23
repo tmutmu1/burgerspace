@@ -2342,18 +2342,27 @@ BurgerSpaceServer::givePlayerPepper()
   }
 }
 
+void BurgerSpaceServer::dispenseBurger()
+{
+    int result;
+    printf("dispenseBurger\n");
+    string pythonFileName = "test.py";
+    result=system("pwd >> pwdoutput");
+    if (result<0) perror("system:");
+    result=system(("python3 dispenser/" + pythonFileName).c_str());
+    if (result<0) perror("system:");
+}
 
 void
 BurgerSpaceServer::makePlayerWin()
 {
+    printf("makePlayerWin\n");
     playSoundEffect(levelFinishedSound);
 
     assert(playerSprite != NULL);
     playerSprite->setTimeToLive(80);
     releaseAllCarriedEnemies();
 
-    string pythonFileName = "test.py";
-    system(("python3 " + pythonFileName).c_str());
 
     celebrationMode = true;
 
@@ -2460,9 +2469,16 @@ BurgerSpaceServer::detectCollisions()
             aGroup->stop();
             releaseCarriedEnemies(*aGroup);
             addToScore(50);
-            if (aGroup->isTopBun())  printf("BURGER DONE, %d left\n",numHamburgersToDo-1);
+            if (aGroup->isTopBun())
+	    {
+		printf("BURGER DONE, %d left\n",numHamburgersToDo-1);
+		dispenseBurger();
+	    }
             if (aGroup->isTopBun() && --numHamburgersToDo == 0)
+	    {
+		dispenseBurger();
                 makePlayerWin();
+	    }
 
             continue;
         }
