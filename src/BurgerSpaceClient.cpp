@@ -619,7 +619,7 @@ BurgerSpaceClient::draw()
 
     if (numLives == 0)  // if demo mode
     {
-        displayMessage(-22.5, "Next Player");
+        writeStringXCentered("Next Player", theScreenSizeInPixels.y + -32.5 * getFontDimensions().y);
         displayMessage(0, "BurgerSpace " VERSION " - by Pierre Sarrazin");
         displayMessage(2, "Move with arrow keys - shoot pepper with Ctrl key");
         displayMessage(3, "SPACE to start, Escape to quit");

@@ -61,7 +61,7 @@ static const int
     PLAYER_SPEED_FACTOR = 8,
     ENEMY_SPEED_FACTOR = 6,
     SCORE_TTL = 20,
-    NUM_INIT_LIVES = 1,
+    NUM_INIT_LIVES = 2,
     NUM_LEVELS = 6,
     CORNER_TURN_TOLERANCE = 8;
 
@@ -1412,6 +1412,7 @@ BurgerSpaceServer::animatePlayer()
                 if (numLives == 0)
                 {
                     deleteSprite(playerSprite);  // game over
+                    dispenseBurger();
                     playerSprite = NULL;
                 }
             }
@@ -2209,7 +2210,7 @@ BurgerSpaceServer::moveEnemyList(SpriteList &slist, int speedFactor)
                 looking at where the player is.
                 Also, the enemies move randomly if the game is in demo mode.
             */
-            int stupidityFactor = rand() % 4;
+            int stupidityFactor = rand() % 2;
             if (stupidityFactor != 0 && playerSprite != NULL && numLives != 0)  // if smart mode:
             {
                 dir = chooseDirectionTowardTarget(spos, playerSprite->getPos(),
@@ -2346,7 +2347,7 @@ void BurgerSpaceServer::dispenseBurger()
 {
     int result;
     printf("dispenseBurger\n");
-    string pythonFileName = "test.py";
+    string pythonFileName = "main.py &";
     result=system("pwd >> pwdoutput");
     if (result<0) perror("system:");
     result=system(("python3 dispenser/" + pythonFileName).c_str());
