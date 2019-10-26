@@ -1412,6 +1412,7 @@ BurgerSpaceServer::animatePlayer()
                 {
                     deleteSprite(playerSprite);  // game over
                     dispenseBurger();
+                    initLevelNo = rand() % 3 + 1;
                     playerSprite = NULL;
                 }
             }
@@ -2898,14 +2899,13 @@ BurgerSpaceServer::loadLevel(int levelNo) throw(string)
 {
     // cout << "BurgerSpaceServer::loadLevel(" << levelNo << ")" << endl;
 
-    if (numLives ==0) {
+    if (numLives == 0) {
       levelNo = (levelNo - 1) % NUM_LEVELS + 1;
     }
     else {
-      levelNo = rand() % 4;
+      levelNo = rand() % 3 + 1;
+      cout << "BurgerSpaceServer::loadLevel(" << levelNo << ")" << endl;
     }
-
-    cout << "BurgerSpaceServer::loadLevel(" << levelNo << ")" << endl;
 
     const char **levelDesc = levelDescriptorTable[levelNo];
     assert(levelDesc != NULL);
