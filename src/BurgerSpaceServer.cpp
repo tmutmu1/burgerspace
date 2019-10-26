@@ -330,7 +330,6 @@ BurgerSpaceServer::levelDescriptor3[] =
     "eeeeeeeteletfffteeeeeee",
     "eeeeeeeleleleeeleeeeeee",
     "eeeeeeetfffffffteeeeeee",
-    "eeeeeeeleeeeeeeleeeeeee",
     "eeeepppleeeeeeelpppeeee",
     "eeeeeeeleeeeeeeleeeeeee",
     "eeetftfteeeeeeetfffteee",
@@ -358,19 +357,19 @@ BurgerSpaceServer::tableIngredientsLevel3[] =
     {  4,  2, 14,  3, IngInit::TOP_BUN    },
 
     // 1st column, lower hamburger:
-    {  4, 20, 26,  1, IngInit::BOTTOM_BUN },
-    {  4, 18, 26,  2, IngInit::MEAT       },
-    {  4, 16, 26,  3, IngInit::TOP_BUN    },
+    {  4, 19, 25,  1, IngInit::BOTTOM_BUN },
+    {  4, 17, 25,  2, IngInit::MEAT       },
+    {  4, 15, 25,  3, IngInit::TOP_BUN    },
 
     // 2nd column:
-    {  8,  8, 20,  1, IngInit::BOTTOM_BUN },
-    {  8,  4, 20,  2, IngInit::MEAT       },
-    {  8,  2, 20,  3, IngInit::TOP_BUN    },
+    {  8,  8, 19,  1, IngInit::BOTTOM_BUN },
+    {  8,  4, 19,  2, IngInit::MEAT       },
+    {  8,  2, 19,  3, IngInit::TOP_BUN    },
 
     // 3rd column:
-    { 12,  8, 20,  1, IngInit::BOTTOM_BUN },
-    { 12,  4, 20,  2, IngInit::MEAT       },
-    { 12,  2, 20,  3, IngInit::TOP_BUN    },
+    { 12,  8, 19,  1, IngInit::BOTTOM_BUN },
+    { 12,  4, 19,  2, IngInit::MEAT       },
+    { 12,  2, 19,  3, IngInit::TOP_BUN    },
 
     // 4th column, upper hamburger:
     { 16,  8, 14,  1, IngInit::BOTTOM_BUN },
@@ -378,9 +377,9 @@ BurgerSpaceServer::tableIngredientsLevel3[] =
     { 16,  2, 14,  3, IngInit::TOP_BUN    },
 
     // 4th column, lower hamburger:
-    { 16, 20, 26,  1, IngInit::BOTTOM_BUN },
-    { 16, 18, 26,  2, IngInit::MEAT       },
-    { 16, 16, 26,  3, IngInit::TOP_BUN    },
+    { 16, 19, 25,  1, IngInit::BOTTOM_BUN },
+    { 16, 17, 25,  2, IngInit::MEAT       },
+    { 16, 15, 25,  3, IngInit::TOP_BUN    },
 
     {  0,  0,  0,  0, IngInit::BOTTOM_BUN }  // rank zero marks the end
 };
@@ -613,7 +612,7 @@ BurgerSpaceServer::enemyStartingHeights[] =
     {  0,  0,  0,  0 },  // index 0 not used
     {  2, 20,  2, 20 },  // level 1
     {  2, 10,  2, 10 },  // level 2
-    {  2, 20,  2, 20 },  // level 3
+    {  2, 19,  2, 19 },  // level 3
     {  2,  9,  2,  9 },  // level 4
     {  2, 13,  2, 13 },  // level 5
     {  3, 11,  2, 10 },  // level 6
@@ -630,7 +629,7 @@ BurgerSpaceServer::playerStartingPos[] =
     { 11,  0 },  // index 0 not used
     { 11, 16 },  // level 1
     { 11, 23 },  // level 2
-    { 11, 25 },  // level 3
+    { 11, 24 },  // level 3
     { 11,  9 },  // level 4
     { 15, 13 },  // level 5
     { 11, 11 },  // level 6
@@ -2477,7 +2476,6 @@ BurgerSpaceServer::detectCollisions()
 	    }
             if (aGroup->isTopBun() && --numHamburgersToDo == 0)
 	    {
-		dispenseBurger();
                 makePlayerWin();
 	    }
 
@@ -2898,9 +2896,16 @@ BurgerSpaceServer::loadLevel(int levelNo) throw(string)
     Throws an error message string if an error occurs.
 */
 {
-    //cout << "BurgerSpaceServer::loadLevel(" << levelNo << ")" << endl;
+    // cout << "BurgerSpaceServer::loadLevel(" << levelNo << ")" << endl;
 
-    levelNo = (levelNo - 1) % NUM_LEVELS + 1;
+    if (numLives ==0) {
+      levelNo = (levelNo - 1) % NUM_LEVELS + 1;
+    }
+    else {
+      levelNo = rand() % 4;
+    }
+
+    cout << "BurgerSpaceServer::loadLevel(" << levelNo << ")" << endl;
 
     const char **levelDesc = levelDescriptorTable[levelNo];
     assert(levelDesc != NULL);
