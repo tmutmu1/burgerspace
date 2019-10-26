@@ -352,9 +352,9 @@ BurgerSpaceServer::levelDescriptor3[] =
 BurgerSpaceServer::tableIngredientsLevel3[] =
 {
     // 1st column, upper hamburger:
-    {  4,  8, 14,  1, IngInit::BOTTOM_BUN },
-    {  4,  6, 14,  2, IngInit::MEAT       },
-    {  4,  2, 14,  3, IngInit::TOP_BUN    },
+    {  4,  8, 13,  1, IngInit::BOTTOM_BUN },
+    {  4,  6, 13,  2, IngInit::MEAT       },
+    {  4,  2, 13,  3, IngInit::TOP_BUN    },
 
     // 1st column, lower hamburger:
     {  4, 19, 25,  1, IngInit::BOTTOM_BUN },
@@ -372,9 +372,9 @@ BurgerSpaceServer::tableIngredientsLevel3[] =
     { 12,  2, 19,  3, IngInit::TOP_BUN    },
 
     // 4th column, upper hamburger:
-    { 16,  8, 14,  1, IngInit::BOTTOM_BUN },
-    { 16,  6, 14,  2, IngInit::MEAT       },
-    { 16,  2, 14,  3, IngInit::TOP_BUN    },
+    { 16,  8, 13,  1, IngInit::BOTTOM_BUN },
+    { 16,  6, 13,  2, IngInit::MEAT       },
+    { 16,  2, 13,  3, IngInit::TOP_BUN    },
 
     // 4th column, lower hamburger:
     { 16, 19, 25,  1, IngInit::BOTTOM_BUN },
@@ -2210,7 +2210,7 @@ BurgerSpaceServer::moveEnemyList(SpriteList &slist, int speedFactor)
                 looking at where the player is.
                 Also, the enemies move randomly if the game is in demo mode.
             */
-            int stupidityFactor = rand() % 2;
+            int stupidityFactor = rand() % 3;
             if (stupidityFactor != 0 && playerSprite != NULL && numLives != 0)  // if smart mode:
             {
                 dir = chooseDirectionTowardTarget(spos, playerSprite->getPos(),
@@ -2904,7 +2904,6 @@ BurgerSpaceServer::loadLevel(int levelNo) throw(string)
     }
     else {
       levelNo = rand() % 3 + 1;
-      cout << "BurgerSpaceServer::loadLevel(" << levelNo << ")" << endl;
     }
 
     const char **levelDesc = levelDescriptorTable[levelNo];
